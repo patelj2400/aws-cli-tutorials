@@ -15,7 +15,7 @@ A step-by-step guide to install, configure, and verify the AWS CLI for interacti
 - [Verify Configuration](#verify-configuration)
 - [Basic Usage Examples](#basic-usage-examples)
 - [Security Best Practices](#security-best-practices)
-- [Contact](#contact)
+
 
 ---
 

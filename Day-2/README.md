@@ -6,7 +6,8 @@ Amazon Elastic Compute Cloud (EC2) is a web service that provides resizable comp
 1. [Using AWS Management Console](#using-aws-management-console)
 2. [Using AWS CLI](#using-aws-cli)
 3. [Using AWS SDK for Python (Boto3)](#using-aws-sdk-for-python-boto3)
-4. [Using Terraform](#using-terraform)
+   - [Accessing EC2 Using AWS Management Console](#accessing-ec2-using-aws-management-console)  
+   - [Accessing EC2 Using AWS CLI](#accessing-ec2-using-aws-cli)  
 
 ## Using AWS Management Console
 
@@ -119,3 +120,28 @@ Note: you can configure the instances according to your preference.
     aws ec2 describe-instances --query "Reservations[*].Instances[*].[InstanceId,State.Name,InstanceType,PublicIpAddress]" --output table
 
 
+### Accessing EC2 Using AWS Management Console  
+To access your EC2 instance using the AWS Management Console:  
+1. Sign in to the [AWS Management Console](https://aws.amazon.com/console/).  
+2. Navigate to **EC2 Dashboard**.  
+3. Select the instance you want to access.  
+4. Click **Connect**.  
+5. Choose **Session Manager**, **RDP (Windows)**, or **SSH (Linux)** based on your instance type.  
+6. Follow the on-screen instructions to connect.
+
+### Accessing EC2 Using AWS CLI  
+To access your EC2 instance using AWS CLI:  
+
+## Prerequisites  
+- Install and configure the AWS CLI.  
+- Ensure your key pair (`.pem` file) is available.  
+- Get the **public or private IP** of your instance.  
+
+### Steps to Connect via SSH (Linux/Mac)  
+1. Open a terminal.  
+2. Run the following command:  
+   ```sh
+   ssh -i /path/to/your-key.pem ec2-user@your-instance-ip
+   
+- Replace /path/to/your-key.pem with the actual key pair path.
+- Replace your-instance-ip with your instance's IP address.
