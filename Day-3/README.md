@@ -109,8 +109,9 @@ This guide explains how to schedule the **AWS Resources Tracker Script** to run 
 2. **Permissions**:
    - Make the script executable:
     
+    ```bash
      chmod +x /home/user/scripts/aws_resources_tracker.sh
-     ```
+     
 
 3. **Cron Access**:
    - Ensure you have access to edit the crontab for the user who will run the script.
@@ -121,7 +122,66 @@ This guide explains how to schedule the **AWS Resources Tracker Script** to run 
 
 1. **Open the Crontab Editor:**
    Run the following command to open the crontab file for editing:
-   ```bash
-   crontab -e
+
+    ```bash
+    crontab -e
 
 2. **Add the Cron Job:**
+
+    ```bash
+    0 2 * * * /home/user/scripts/aws_resources_tracker.sh >> /home/user/scripts/cron.log 2>&1
+
+- Explanation:
+
+    ```bash
+    0 2 * * *: Schedule the script to run at 2:00 AM every day.
+
+    /home/user/scripts/aws_resources_tracker.sh: Path to the script.
+
+    >> /home/user/scripts/cron.log 2>&1: Redirects both standard output and errors to a log file (cron.log).
+
+3. **Save and Exit:**
+
+    - Save the crontab file and exit the editor.
+
+    - If using nano, press CTRL + X, then Y, and Enter to save.
+
+## Verify the Cron Job
+1. Check Cron Logs:
+
+    - To verify that the Cron job is running, check the logs:
+
+    ```bash
+    tail -f /home/user/scripts/cron.log
+
+2. List Cron Jobs:
+
+    - To view all scheduled Cron jobs for the current user:
+    ```bash
+    crontab -l
+
+## Example Crontab Entry
+
+Here’s an example of what the crontab entry might look like:
+
+    # Edit this file to introduce tasks to be run by cron.
+    # Each task is defined in a line with the following format:
+    # m h  dom mon dow   command
+
+    # Run AWS Resources Tracker Script daily at 2 AM
+    0 2 * * * /home/user/scripts/aws_resources_tracker.sh >> /home/user/scripts/cron.log 2>&1
+
+
+    ## Notes
+
+### Time Zone
+
+- Cron jobs use the system's time zone. Ensure the system time zone is correctly configured.
+
+### Permissions
+
+- Ensure the script and log file have the correct permissions to be executed and written to by the Cron user.
+
+### Debugging
+
+- If the script doesn’t run as expected, check the `cron.log` file for errors.
