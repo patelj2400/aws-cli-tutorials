@@ -2,6 +2,12 @@
 
 This shell script automates the tracking of AWS resources such as EC2 instances, S3 buckets, Lambda functions, and IAM users. It generates a daily report and can be scheduled using a Cron job.
 
+## Table of Contents
+1. [Prerequisites](#prerequisites)
+2. [How to setup cron job](#how-to-setup-cron-job)
+
+
+
 ## Prerequisites
 
 - **AWS CLI**: Installed and configured with the necessary permissions.
@@ -88,3 +94,34 @@ This shell script automates the tracking of AWS resources such as EC2 instances,
 
 # Log end of script
     log_message "AWS Resources Tracker Script completed. Report saved to $REPORT_FILE."
+
+
+## How to setup cron job
+
+This guide explains how to schedule the **AWS Resources Tracker Script** to run automatically using a Cron job.
+
+---
+
+1. **Script Location**:
+   - Ensure the script (`aws_resources_tracker.sh`) is saved in a directory and is executable.
+   - Example: `/home/user/scripts/aws_resources_tracker.sh`
+
+2. **Permissions**:
+   - Make the script executable:
+    
+     chmod +x /home/user/scripts/aws_resources_tracker.sh
+     ```
+
+3. **Cron Access**:
+   - Ensure you have access to edit the crontab for the user who will run the script.
+
+---
+
+## Steps to Set Up the Cron Job
+
+1. **Open the Crontab Editor:**
+   Run the following command to open the crontab file for editing:
+   ```bash
+   crontab -e
+
+2. **Add the Cron Job:**
